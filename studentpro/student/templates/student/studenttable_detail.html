@@ -1,0 +1,32 @@
+{% extends 'student/base.html' %}
+{% load staticfiles %}
+ {% block maincontent  %}
+
+<div class="right_col" role="main">
+<h1>Student Details</h1>
+ <div class="table-responsive">   
+  <table class="table">
+    <thead>
+      <tr>
+        <th>student_ID</th>
+        <th>roll_no</th>
+        <th>student_name</th>
+        <th>student_class</th>
+        <th>division</th>
+      </tr>
+    </thead>
+    <tbody>
+ 
+      <tr>
+        <td>{{object.student_ID}}</td>
+        <td>{{object.roll_no}}</td>
+        <td>{{object.student_name}}</td>
+        <td>{{object.student_class}}</td>
+        <td>{{object.division}}</td>
+      </tr>
+	 </tbody>
+	 </table>
+	 </div>
+	 </div>
+</div>
+{%endblock%}

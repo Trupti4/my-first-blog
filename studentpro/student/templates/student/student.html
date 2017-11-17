@@ -1,0 +1,128 @@
+{% extends 'student/base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+ {% block maincontent  %}
+
+<div class="right_col" role="main">
+<div class="container">
+  <h2>Student information Table</h2>
+
+   <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4 text-right">
+               
+            <a href="{%url 'add_student' %}" class="btn btn-primary btn ">Add Student</a>  
+            </div>
+            </div>
+            <hr>
+            <!-- Search Block Start -->
+                  <div class="panel-group" id="accordian" role="tablist" aria-multiselectable="true">
+                          <div class="panel panel-default">
+                              <div class="panel-heading" role="tab" id="headingOne">
+                                  <h4 class="panel-title">
+                                      <a class="collapsed" id="collapse_panel" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                          Search Criteria <small>(click here to view Search Criteria)</small>
+                                      </a>
+                                  </h4>
+                              </div>
+                              <div style="height: 0px;" aria-expanded="true" id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                  <div class="panel-body">
+
+                                          <div class="panel-body">
+                                              <form method="get" id="search-form">
+                                              <div class="row" style="margin-top:5px">
+
+                                                  <div class="col-md-2"> Student Name</div>
+                                                  <div class="col-md-4">{{form.student_name}}</div>
+
+                                                  <div class="col-md-2">Student ID</div>
+                                                <div class="col-md-4">{{ form.student_ID }}</div>
+                                              </div>
+                                              <br>
+                                              <div class="row" style="margin-top:5px">
+
+                                                    <div class="col-md-2">
+                                                        <label class="control-label req" for="{{ form.student_class.id_for_label }}">Class</label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        {{ form.student_class|add_class:"form-control"|attr:"placeholder: student_class"}}
+                                                        {{ form.student_class.errors }}
+                                                        <span class="fa fa-scribd form-control-feedback left"></span>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label class="control-label req" for="{{ form.student_division.id_for_label }}">Division</label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        {{ form.student_division|add_class:"form-control"|attr:"placeholder: student_division"}}
+                                                        {{ form.student_division.errors }}
+                                                        <span class="fa fa-scribd form-control-feedback left"></span>
+                                                    </div>
+
+                                              </div>
+                                              <br>
+                                             
+                                              <div class="row" style="margin-top:10px">
+                                                  <div class="col-md-1 col-md-offset-4">
+                                                      <input type="submit" name="submit" class="btn btn-primary btn-sm" Value="search">
+                                                  </div>
+                                                  <div class="col-md-1" style="margin-left:10px">
+                                                      <a href="/student" class="btn btn-primary btn-sm">Reset</a> </th>
+                                                  </div>
+                                              </div>
+                                              </form>
+
+                                          </div>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+              <!-- search Bock End -->
+<hr>
+
+      <div class="table-responsive">   
+  <table class="table">
+    <thead>
+      <tr>
+        <th>student_ID</th>
+         <th>roll_no</th>
+        <th>student_name</th>
+        <th>student_class</th>
+        <th>division</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for obj in object_list %}
+      <tr>
+        <td>{{obj.student_ID}}</td>
+        <td>{{obj.roll_no}}</td>
+        <td>{{obj.student_name}}</td>
+        <td>{{obj.student_class}}</td>
+        <td>{{obj.division}}</td>
+        <td>
+                            <div class="btn-group">
+                                <button aria-expanded="false" data-toggle="dropdown" class="btn btn-xs btn-primary dropdown-toggle" type="button">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul role="menu" class="dropdown-menu">
+                                  
+                                    <li><a href="{% url "edit-student" obj.student_ID %}">Edit</a></li>
+                                    <li><a href="{% url "view-student" obj.student_ID %}">View</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </td>
+    
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+</div>
+</div>
+
+
+{% endblock %}

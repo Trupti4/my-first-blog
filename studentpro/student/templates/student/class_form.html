@@ -1,0 +1,29 @@
+{% extends 'student/base.html' %}
+
+{% load widget_tweaks %}
+
+
+{% block maincontent %}
+
+<div class="right_col" role="main">
+ <form action="" method="post">
+                  {% csrf_token %}
+                  <hr>
+                    <div class="row row-margin">
+                        <div class="form-group">
+                            <div class="col-md-2 text-right">
+                                <label class="control-label " for="{{ form.class_name.id_for_label }}">Student class name</label>
+                            </div>
+                            <div class="col-md-4 col-xs-12 text-left">
+                                {{ form.class_name|add_class:"form-control"|attr:"required:'required'" }}
+                                {{ form.class_name.errors }}
+                            </div>
+                        </div>
+                        </div>
+                         <button type="submit" class="save btn btn-default">Save</button>
+                        </form>
+                        <hr>
+
+                           
+                        </div>
+                        {% endblock %}

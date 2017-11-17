@@ -1,0 +1,27 @@
+{% extends 'student/base.html' %}
+{% load staticfiles %}
+ {% block maincontent  %}
+
+<div class="right_col" role="main">
+<h1>Student Details</h1>
+ <div class="table-responsive">   
+  <table class="table">
+    <thead>
+      <tr>
+        <th>stud_class</th>
+        <th>division_name</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+ 
+      <tr>
+        <td>{{object.stud_class}}</td>
+        <td>{{object.division_name}}</td>
+      </tr>
+   </tbody>
+   </table>
+   </div>
+   </div>
+</div>
+{%endblock%}
